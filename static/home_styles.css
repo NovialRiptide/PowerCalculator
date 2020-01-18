@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+.header {
+    padding: 10vh;
+    margin: -1vh;
+    font-size: 3.5vh;
+    text-align: center;
+    background: #3868b1;
+    color: #ffffff;
+    margin-bottom: 1.5vh;
+}
+
+body {
+    text-align: center;
+}
+.login {
+    display: inline-block;
+    background: #e2e2e2;
+    margin: auto;
+    padding: 1vh;
+    padding-bottom: 4vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    border-style: hidden;
+    text-align: left;
+    border-radius: 3vh;
+}
+
+.login input[type=text] {
+    padding: 1vh;
+    padding-right: 10vh;
+    border-style: hidden;
+    margin-bottom: 0.5vh;
+}
+
+.login input[type=password] {
+    padding: 1vh;
+    padding-right: 10vh;
+    border-style: hidden;
+    margin-bottom: 0.5vh;
+}
+
+.login input[type=submit] {
+    padding: 1vh;
+    border-style: hidden;
+    background-color: #3868b1;
+    color: #ffffff;
+    border-radius: 0.5vh;
+    text-align: right;
+}

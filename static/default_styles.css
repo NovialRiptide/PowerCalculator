@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+.header {
+    padding: 10vh;
+    margin: -1vh;
+    font-size: 3.5vh;
+    text-align: center;
+    background: #3868b1;
+    color: #ffffff;
+    margin-bottom: 1.5vh;
+}
+
+body {
+    text-align: center;
+}
+.section {
+    display: inline-block;
+    background: #e2e2e2;
+    margin: auto;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    border-style: hidden;
+    text-align: left;
+    border-radius: 3vh;
+}
+
+.section th, td {
+    padding: 0.5vh;
+}
