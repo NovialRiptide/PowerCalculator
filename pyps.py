@@ -43,15 +43,8 @@ class pypowerschool:
         passElem.send_keys(self.password)
         passElem.submit()
     def get_student_name(self):
-<<<<<<< HEAD
         name = self.html_homepage.xpath("/html/body/div[1]/div[4]/div[2]/h1/text()")
         name = name[0].replace("Grades and Attendance: ", "").split(", ")
-=======
-        self.browser.get(self.url_homepage)
-        name = self.browser.find_element_by_xpath("//*[@id='content-main']/h1").text
-        name = name.replace("Grades and Attendance: ", "")
-        name = name.split(", ")
->>>>>>> parent of befdf4a... get_student_name() rewrite
         name = f"{name[1]} {name[0]}"
 
         return name
