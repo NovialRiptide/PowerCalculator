@@ -1,6 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from lxml import html
+from lxml import etree
+
 import sys
 import urllib3
 import json
@@ -42,11 +45,18 @@ class pypowerschool:
         userElem.send_keys(self.username)
         passElem.send_keys(self.password)
         passElem.submit()
+
+        self.html_homepage = self.__copy(self.url_homepage)
+    def __copy(self, url):
+        output = self.browser.get(url)
+        output = html.fromstring(self.browser.page_source)
+        print(output)
+        return output
     def get_student_name(self):
         name = self.html_homepage.xpath("/html/body/div[1]/div[4]/div[2]/h1/text()")
         name = name[0].replace("Grades and Attendance: ", "").split(", ")
         name = f"{name[1]} {name[0]}"
-
+        print(name)
         return name
     def get_number_of_quarters(self):
         columns = int(len(self.browser.find_elements_by_tag_name("tr")))

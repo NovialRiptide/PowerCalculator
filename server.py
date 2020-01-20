@@ -20,7 +20,6 @@ def login_page():
         try:
             school = pyps.pypowerschool(usr, pwd, "https://ps2.millburn.org")
         except:
-            school.end()
             return render_template("homepage.html")
         student_name = school.get_student_name()
         gpa = school.get_student_gpa()
