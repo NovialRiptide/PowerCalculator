@@ -27,10 +27,6 @@ def login_page():
         school.end()
         return render_template("infopage.html", student_gpa=gpa, student_name=name)
     return render_template("homepage.html")
-
-@app.route("/about")
-def about():
-    return render_template("aboutpage.html")
-
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=80, threaded=True)
