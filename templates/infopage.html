@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <script src="js/script.js"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='default_styles.css')}}">
-    
+    <link rel="stylesheet" href="{{url_for('static', filename='course_styles.css')}}">
     <title>PowerCalculator</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,9 +16,13 @@ body {
     <div class="header">
         <h1>PowerCalculator</h1> 
     </div>
-    <div class="section" name="gpa_table">
-        <h1>{{ student_name }}'s GPA</h1>
+    <div class="info_section">
+        <h1>GPA</h1>
         <p>{{  student_gpa }}</p>
+    </div>
+    <div class="info_section">
+        <h1>Courses</h1>
+        <p><b>NOTE:</b> Physical Education is not a course that affects your GPA.</p>
     </div>
 </body>
 </html>
