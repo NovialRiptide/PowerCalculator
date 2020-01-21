@@ -20,6 +20,7 @@ def login_page():
         try:
             school = pyps.pypowerschool(usr, pwd, "https://ps2.millburn.org")
         except:
+            print("wrong password")
             return render_template("homepage.html")
         student_name = school.get_student_name()
         gpa = school.get_student_gpa()
@@ -27,6 +28,6 @@ def login_page():
         school.end()
         return render_template("infopage.html", student_gpa=gpa, student_name=name)
     return render_template("homepage.html")
-    
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=80, threaded=True)
