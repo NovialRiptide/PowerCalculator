@@ -1,10 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from lxml import html
-from lxml import etree
-from bs4 import BeautifulSoup
-
+try:
+    from lxml import html
+    from lxml import etree
+    from bs4 import BeautifulSoup
+except:
+    print("Lxml or BeautifulSoup is not installed.")
+    
 import sys
 import urllib3
 import json
@@ -21,18 +24,16 @@ def convert_grade_to_gpa(grade, level):
         gpa_data = json.load(json_file)
     return float(gpa_data[level][grade])
 def find_level(course_name):
-    if "Accel" in course_name:
+    if " Accel" in course_name:
         return "honors"
-    if "AP" in course_name:
+    if "AP " in course_name:
         return "college"
     else:
         return "default"
     
 
 class pypowerschool:
-    """
-    ONLY WORKS WITH MILLBURN'S POWERSCHOOL WEBSITE
-    """
+    """ONLY WORKS WITH MILLBURN'S POWERSCHOOL WEBSITE"""
     def __init__(self, username, password, url):
         self.username = username
         self.password = password
