@@ -19,11 +19,11 @@ body {
     background: #e2e2e2;
     padding-left: 10vh;
     padding-right: 10vh;
-    margin-left: 10vh;
-    margin-right: 10vh;
+    margin-left: 1.5vh;
+    margin-right: 1.5vh;
     border-style: hidden;
     text-align: left;
-    border-radius: 3vh;
+    border-radius: 1vh;
 }
 .info_section th, td {
     padding: 0.5vh;
