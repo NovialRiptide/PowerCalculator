@@ -14,15 +14,12 @@ body {
 </head>
 <body>
     <div class="header">
-        <h1>PowerCalculator</h1> 
+        <h1>Summary of {{ student_name }}</h1>
     </div>
     <div class="info_section">
         <h1>GPA</h1>
-        <p>{{  student_gpa }}</p>
-    </div>
-    <div class="info_section">
-        <h1>Courses</h1>
-        <p><b>NOTE:</b> Physical Education is not a course that affects your GPA.</p>
+        <p>Unweighted: {{  u_student_gpa }}</p>
+        <p>Weighted: {{  w_student_gpa }}</p>
     </div>
 </body>
 </html>
