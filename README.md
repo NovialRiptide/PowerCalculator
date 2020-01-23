@@ -1,4 +1,4 @@
-// PowerCalculator 1.0.0
+// PowerCalculator 1.1.0
 Designed & Developed by Andrew Hong (insta: @andrew_hong_)
 
 Calculate your GPA without manually putting your grades in a calculator. In addition,
