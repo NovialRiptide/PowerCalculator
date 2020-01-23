@@ -16,7 +16,6 @@ def login_page():
     if request.method == 'POST':
         usr = request.form['username']
         pwd = request.form['password']
-        print(usr, pwd)
         try:
             school = pyps.pypowerschool(usr, pwd, "https://ps2.millburn.org")
         except:
