@@ -21,7 +21,7 @@ def convert_grade_to_gpa(grade, level):
         gpa_data = json.load(json_file)
     return float(gpa_data[level][grade])
 def find_level(course_name):
-    if "Accel" in course_name:
+    if "Acc" in course_name:
         return "honors"
     if "AP" in course_name:
         return "college"
@@ -106,7 +106,7 @@ class pypowerschool:
                             courses[course_counted]["grades"].append(course_grade)
                 course_counted += 1
         return courses
-    def get_student_gpa(self):
+    def get_student_gpa(self, weighted=True):
         grades = self.get_student_grades()
         all_gpa_values = []
         with open('gpa.json') as json_file:
@@ -121,9 +121,14 @@ class pypowerschool:
                     for course in range(len(grades)):
                         try:
                             if grades[course]["grades"][quarter] != "":
-                                course_gpa = convert_grade_to_gpa(grades[course]["grades"][quarter], find_level(grades[course]["course_name"]))
-                                course_counted += 1
-                                gpa = gpa + course_gpa
+                                if weighted:
+                                    course_gpa = convert_grade_to_gpa(grades[course]["grades"][quarter], find_level(grades[course]["course_name"]))
+                                    course_counted += 1
+                                    gpa = gpa + course_gpa
+                                else:
+                                    course_gpa = convert_grade_to_gpa(grades[course]["grades"][quarter], "default")
+                                    course_counted += 1
+                                    gpa = gpa + course_gpa
                         except IndexError:
                             pass
                     try:
