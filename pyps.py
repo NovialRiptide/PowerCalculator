@@ -58,11 +58,23 @@ class pypowerschool:
         output = self.browser.get(url)
         output = html.fromstring(self.browser.page_source)
         return output
+    def set_student_number(self, student_number):
+        student_names_menu = self.browser.find_element_by_xpath(f"/html/body/div[1]/div[3]/ul[1]/li[{student_number}]/a")
+        student_names_menu.click()
     def get_student_name(self):
-        name = self.html_homepage.xpath("/html/body/div[1]/div[4]/div[2]/h1/text()")
-        name = name[0].replace("Grades and Attendance: ", "").split(", ")
-        name = f"{name[1]} {name[0]}"
-        return name
+        if(len(self.html_homepage.xpath("/html/body/div[1]/div[3]/ul[1]/li"))) > 1:
+            names = []
+            for student in range(len(self.html_homepage.xpath("/html/body/div[1]/div[3]/ul[1]"))+1):
+                name = self.html_homepage.xpath("/html/body/div[1]/div[4]/div[2]/h1/text()")
+                name = name[0].replace("Grades and Attendance: ", "").split(", ")
+                name = f"{self.browser.find_element_by_xpath(f'/html/body/div[1]/div[3]/ul[1]/li[{student+1}]/a').text} {name[0]}"
+                names.append(name)
+            return names
+        else:
+            name = self.html_homepage.xpath("/html/body/div[1]/div[4]/div[2]/h1/text()")
+            name = name[0].replace("Grades and Attendance: ", "").split(", ")
+            name = f"{name[1]} {name[0]}"
+            return name
     def get_number_of_quarters(self):
         columns = int(len(self.bs4_homepage.find_all("tr")))
         column_positions = []
@@ -82,7 +94,7 @@ class pypowerschool:
         number_of_courses = int(len(self.bs4_homepage.find_all("td"))/21)
         for course_number in range(number_of_courses-1):
             course_name = repr(self.bs4_homepage.find_all("td")[11+21*course_number].get_text())
-            if "Physical Education" in course_name or "Phys Ed" in course_name:
+            if "Physical Education" in course_name or "Phys Ed" in course_name or " ics" in course_name or "Study Skills" in course_name or "Study Hall" in course_name:
                 pass
             else:
                 # removes teacher's name
@@ -99,7 +111,7 @@ class pypowerschool:
                         pass
                     elif "Rm" not in course_grade:
                         if repr(course_grade) == "\'\\xa0\'":
-                            courses[course_counted]["grades"].append("")
+                            courses[course_counted]["grades"].append(None)
                         else:
                             course_grade = re.split('(\d+)',course_grade)
                             course_grade = course_grade[0]
@@ -120,7 +132,7 @@ class pypowerschool:
                     # finds gpa for 1 course
                     for course in range(len(grades)):
                         try:
-                            if grades[course]["grades"][quarter] != "":
+                            if grades[course]["grades"][quarter] != None:
                                 if weighted:
                                     course_gpa = convert_grade_to_gpa(grades[course]["grades"][quarter], find_level(grades[course]["course_name"]))
                                     course_counted += 1
