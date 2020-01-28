@@ -96,9 +96,7 @@ class pypowerschool:
         number_of_courses = int(len(self.bs4_homepage.find_all("td"))/21)
         for course_number in range(number_of_courses-1):
             course_name = repr(self.bs4_homepage.find_all("td")[11+21*course_number].get_text())
-            if "Physical Education" in course_name or "Phys Ed" in course_name or " ics" in course_name or "Study Skills" in course_name or "Study Hall" in course_name:
-                pass
-            else:
+            if course_name not in ["Physical Education", "Phys Ed", " ics", "Study Skills", "Study Hall"]:
                 # removes teacher's name
                 course_name = course_name.split("\'")
                 course_name = course_name[1]
