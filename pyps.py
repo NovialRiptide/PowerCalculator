@@ -30,7 +30,6 @@ def find_level(course_name):
         return "college"
     else:
         return "default"
-    
 
 class pypowerschool:
     """ONLY WORKS WITH MILLBURN'S POWERSCHOOL WEBSITE"""
@@ -59,6 +58,8 @@ class pypowerschool:
         output = self.browser.get(url)
         output = html.fromstring(self.browser.page_source)
         return output
+    def _get_student_summary_table(self):
+        pass
     def set_student_number(self, student_number):
         student_names_menu = self.browser.find_element_by_xpath(f"/html/body/div[1]/div[3]/ul[1]/li[{student_number}]/a")
         student_names_menu.click()
@@ -68,7 +69,7 @@ class pypowerschool:
             for student in range(len(self.html_homepage.xpath("/html/body/div[1]/div[3]/ul[1]"))+1):
                 name = self.html_homepage.xpath("/html/body/div[1]/div[4]/div[2]/h1/text()")
                 name = name[0].replace("Grades and Attendance: ", "").split(", ")
-                name = f"{self.browser.find_element_by_xpath(f'/html/body/div[1]/div[3]/ul[1]/li[{student+1}]/a').text} {name[0]}"
+                name = f"{self.html_homepage.xpath(f'/html/body/div[1]/div[3]/ul[1]/li[{student+1}]/a').text} {name[0]}"
                 names.append(name)
             return names
         else:
@@ -154,5 +155,9 @@ class pypowerschool:
                 except KeyError:
                     pass
         return all_gpa_values
+    def get_student_average_gpa(self, weighted=True):
+        gpa = self.get_student_gpa(weighted=weighted)
+        return math.mean(gpa)
+
     def end(self):
         self.browser.quit()
