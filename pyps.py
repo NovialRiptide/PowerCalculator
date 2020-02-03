@@ -11,10 +11,13 @@ import json
 import string
 import re
 import math
+import os
 
 options = Options()
-options.add_argument('--headless')
-options.add_argument('--disable-gpu')
+options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
 
 def convert_grade_to_gpa(grade, level):
     with open('gpa.json') as json_file:
@@ -35,7 +38,7 @@ class pypowerschool:
         self.password = password
         self.url = url
         
-        self.browser = webdriver.Chrome(chrome_options=options)
+        self.browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
         self.browser.get(self.url)
         userElem = self.browser.find_element_by_id("fieldAccount")
         passElem = self.browser.find_element_by_id("fieldPassword")
