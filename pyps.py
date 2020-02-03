@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.options import Options
 
 from lxml import html
 from lxml import etree
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup4
     
 import sys
 import urllib3
