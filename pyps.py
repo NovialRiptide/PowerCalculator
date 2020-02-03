@@ -1,12 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-try:
-    from lxml import html
-    from lxml import etree
-    from bs4 import BeautifulSoup
-except:
-    print("Lxml or BeautifulSoup is not installed.")
+from lxml import html
+from lxml import etree
+from bs4 import BeautifulSoup
     
 import sys
 import urllib3
