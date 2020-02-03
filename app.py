@@ -16,11 +16,11 @@ def login_page():
     if request.method == 'POST':
         usr = request.form['username']
         pwd = request.form['password']
-        try:
-            school = pyps.pypowerschool(usr, pwd, "https://ps2.millburn.org")
-        except:
-            print("wrong password")
-            return render_template("homepage.html")
+        #try:
+        school = pyps.pypowerschool(usr, pwd, "https://ps2.millburn.org")
+        #except:
+        #    print("wrong password")
+        #    return render_template("homepage.html")
         student_name = school.get_student_name()
         u_gpa = school.get_student_gpa(weighted=False)
         w_gpa = school.get_student_gpa()
