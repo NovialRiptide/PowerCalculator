@@ -29,5 +29,5 @@ def login_page():
         return render_template("infopage.html", u_student_gpa=u_gpa, w_student_gpa=w_gpa, student_name=name)
     return render_template("homepage.html")
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True, threaded=True)
+#if __name__ == "__main__":
+#    app.run(host="0.0.0.0", debug=True, threaded=True)
